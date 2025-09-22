@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stopwatch</title>
+<style> 
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #4731a7;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  #display {
+    font-size: 4em;
+    font-weight: bold;
+    color: #222;
+    background-color: #1584c4;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    user-select: none;
+    margin-bottom: 30px;
+    min-width: 150px;
+    text-align: center;
+  }
+
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 0 10px;
+    font-size: 1.2em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  button:hover {
+    background-color: #eb6104;
+  }
+
+  button:active {
+    background-color: #0bdb04;
+  }
+
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(174, 0, 255, 0.5);
+  }
+</style>
+</head>
+<body>
+    <h2>JavaScript Stopwatch</h2>
+    <p id="display">00:00</p>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="reset()">Reset</button>
+
+<script>
+   let seconds = 0;
+   let intervalId = null;
+
+    function updateDisplay() {
+      const mins = String(Math.floor(seconds / 60)).padStart(2, '0'); 
+      const secs = String(seconds % 60).padStart(2, '0');
+      document.getElementById("display").textContent = `${mins}:${secs}`;
+    } 
+    function start() {
+      if (!intervalId) { 
+        intervalId = setInterval(() => {
+        seconds++; 
+        updateDisplay();
+        }, 1000);
+      }
+    }
+
+    function stop() {
+     clearInterval(intervalId); 
+     intervalId = null;
+    }
+    
+    function reset() {
+     stop();  
+     seconds = 0; 
+     updateDisplay(); 
+    }
+
+</script>
+</body>
+</html>
