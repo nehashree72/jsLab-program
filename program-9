@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider{
+            text-align: center;
+            height: 400px;
+            width: 60%;
+            margin: auto;
+            position: relative;
+        }
+        .slider img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+
+        }
+        button{
+            padding: 20px;
+            border: none;
+            background-color: aqua;
+            border: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+<div class="slider">
+    <img src="./img1.jpg" alt="" id="displayImg">
+    <button id="next">next</button>
+    <button id="prev">previous</button>
+
+</div>
+<script>
+    let Images=["img1.jpg","img2.jfif","img3.jpg"]
+    let currentIndex=0;
+
+    let display=document.getElementById("displayImg");
+    let prevBTn=document.getElementById("prev");
+    let nextBTn=document.getElementById("next");
+
+    nextBTn.addEventListener("click",()=>{
+        currentIndex=(currentIndex+1)%Images.length;
+        display.src=Images[currentIndex];
+    })
+    prevBTn.addEventListener("click",()=>{
+        currentIndex=(currentIndex-1+Images.length)%Images.length;
+    })
+
+    setInterval(()=>{
+        currentIndex=(currentIndex+1)%Images.length;
+        display.src=Images[currentIndex];
+    },2000);
+</script>
+</body>
+</html>
